@@ -29,6 +29,18 @@ namespace WebAPIAssignment1
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BankDbContext>(options => options.UseSqlServer(connection));
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                    });
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -46,6 +58,7 @@ namespace WebAPIAssignment1
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
             app.UseMvc();
         }
     }
