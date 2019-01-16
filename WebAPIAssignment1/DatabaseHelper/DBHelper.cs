@@ -12,7 +12,7 @@ namespace WebAPIAssignment1.DatabaseHelper
     {
         [Key]
         public int ID { get; set; }
-        public string accountDescription { get; set; }
+        public string AccountDescription { get; set; }
 
         // Navigation properties.
         // Child.        
@@ -56,7 +56,7 @@ namespace WebAPIAssignment1.DatabaseHelper
 
         // Define entity collections.
         public DbSet<AccountType> AccountTypes { get; set; }
-        public DbSet<ClientProfile> AccountProfiles { get; set; }
+        public DbSet<ClientProfile> ClientProfiles { get; set; }
         public DbSet<ClientAccount> ClientAccounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -87,8 +87,8 @@ namespace WebAPIAssignment1.DatabaseHelper
         {
             // Seed parents first and then children since child FK's point to parents.
             builder.Entity<AccountType>().HasData(
-                new { ID = 1, Description = "Checking" },
-                new { ID = 2, Description = "Savings" }
+                new { ID = 1, AccountDescription = "Checking" },
+                new { ID = 2, AccountDescription = "Savings" }
             );
             builder.Entity<ClientProfile>().HasData(
                 new { ID = 1, LastName = "Jones", FirstName = "Barb" },
@@ -102,3 +102,9 @@ namespace WebAPIAssignment1.DatabaseHelper
         }
     }
 }
+
+
+
+
+
+
