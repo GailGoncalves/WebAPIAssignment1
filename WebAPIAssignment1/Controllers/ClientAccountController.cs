@@ -19,16 +19,12 @@ namespace WebAPIAssignment1.Controllers
         {
             _context = context;
         }
-
-        // GetAll() is automatically recognized as
-        // http://localhost:<port #>/api/clientaccount
         [HttpGet]
         public IEnumerable<ClientAccount> GetAll()
         {
             return _context.ClientAccounts.ToList();
         }
 
-        //[HttpGet("{clientID} {accountID}", Name = "GetAccount")]
         [HttpGet]
         [Route("GetAccount")]
         public IActionResult GetById(int clientID, int accountID)
@@ -71,7 +67,6 @@ namespace WebAPIAssignment1.Controllers
 
         }
         [HttpPost]
-       
         public IActionResult Create([FromBody]ClientAccount clientaccount)
         {
             Console.Write(clientaccount.ClientID);
@@ -86,7 +81,6 @@ namespace WebAPIAssignment1.Controllers
             else
             {
                 return BadRequest();
-                
             }
             
         }
@@ -120,25 +114,6 @@ namespace WebAPIAssignment1.Controllers
             }
             return new ObjectResult(item);
         }
-
-        //[HttpPut]
-        //[Route("EditAccount")] // Custom route
-       // public IActionResult GetByParams([FromBody]ClientAccount clientaccount)
-        //{
-        //    var item = _context.ClientAccounts.Where(t => t.ClientID == clientaccount.ClientID && t.AccountID == clientaccount.AccountID).FirstOrDefault();
-         //   if (item == null)
-         //   {
-        //        return NotFound();
-         //   }
-         //   else
-         //   {
-        //        item.Balance = clientaccount.Balance;
-        //        _context.SaveChanges();
-        //    }
-        //    return new ObjectResult(item);
-     //   }
-
-
 
     }
 
